@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Local Storage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="m-2">
+    <h1 class="text-3xl">Local Storage</h1>
+    <form class="border-2 p-2 mb-2">
+      <div class="mb-2">
+        <label for="name">Name</label>
+        <input id="name" type="text" class="border-2 border-orange-500 p-2" />
+      </div>
+      <div class="mb-2">
+        <label for="email">Email</label>
+        <input id="email" type="email" class="border-2 border-orange-500 p-2" />
+      </div>
+      <button class="bg-green-400 p-2 rounded-md">Save to localstorage</button>
+    </form>
+
+    <div id="data-container" class="border-2 p-2 mb-2">
+      <button id="get-data" class="bg-green-400 p-2 rounded-md">
+        Get from localstorage
+      </button>
+    </div>
+
+    <div class="border-2 p-2 mb-2">
+      <button class="bg-red-400 p-2 rounded-md mb-2">
+        Remove NAME from localstorage
+      </button>
+      <button class="bg-red-400 p-2 rounded-md">
+        Remove EMAIL from localstorage
+      </button>
+    </div>
+
+    <div class="border-2 p-2 mb-2">
+      <button class="bg-red-400 p-2 rounded-md">
+        Clear everything in localstorage
+      </button>
+    </div>
+    <script src="example.js"></script>
+  </body>
+</html>
