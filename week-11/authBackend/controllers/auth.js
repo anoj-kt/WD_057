@@ -49,10 +49,31 @@ export const signIn = asyncHandler(async (req, res, next) => {
     expiresIn: '30m',
   });
 
-  res.json({ token });
+  const userObject = existingUser.toObject();
+  delete userObject.password;
+
+  const isProduction = process.env.NODE_ENV === 'production';
+  const cookieOptions = {
+    httpOnly: true,
+    sameSite: isProduction ? 'None' : 'Lax',
+    secure: isProduction,
+  };
+  res.cookie('token', token, cookieOptions);
+  res.json({ user: userObject });
 });
 
 export const getUser = asyncHandler(async (req, res, next) => {
   const user = await User.findById(req.uid);
   res.json(user);
+});
+
+export const signOut = asyncHandler(async (req, res) => {
+  const isProduction = process.env.NODE_ENV === 'production';
+  const cookieOptions = {
+    httpOnly: true,
+    sameSite: isProduction ? 'None' : 'Lax',
+    secure: isProduction,
+  };
+  res.clearCookie('token', cookieOptions);
+  res.status(200).json({ success: 'goodbye' });
 });
